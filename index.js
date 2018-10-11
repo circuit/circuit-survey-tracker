@@ -69,7 +69,7 @@ app.get('/login', async (req, res) => {
   // Redirect to OAuth2 authorize url
   const url = oauth2.authorizationCode.authorizeURL({
     redirect_uri: redirectUri,
-    scope: config.circuit.scope,
+    scope: config.circuit.scope || 'ALL',
     state: req.session.oauthState
   });
   res.redirect(url);
