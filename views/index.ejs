@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Circuit Survey Tracker <span style="font-size: 16px; font-weight: 200">on
+        <%= domain %></span></h2>
+    <p>Post a survey and track the results. Download results as json or excel doc.</p>
+    <br>
+
+    <h4>Post new survey</h4>
+    <form action="/post" method="post">
+      <div class="form-group">
+        <input type="text" class="form-control col-8" name="convId" placeholder="Enter conversation ID">
+      </div>
+      <div class="form-group">
+        <textarea rows="3" class="form-control col-8" name="question" placeholder="Enter Question"></textarea>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control col-8" name="answer1" placeholder="Answer 1">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control col-8" name="answer2" placeholder="Answer 2">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control col-8" name="answer3" placeholder="Answer 3">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control col-8" name="answer4" placeholder="Answer 4">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control col-8" name="answer5" placeholder="Answer 5">
+      </div>
+      <input type="submit" class="btn btn-primary" id="submit" value="Post in Circuit" />
+    </form>
+
+    <br>
+    <h4>Your surveys</h4>
+    <% if(authenticated){ %>
+    <p><a href="/">Refresh</a> | <a href="/export-xls">Export XLS</a> | <a href="/export-json">Export JSON</a></p>
+    <% if(surveys.length){ %>
+    <ul>
+      <% for(var i=0; i < surveys.length; i++) { %>
+      <li>
+        <p>
+          <b><%= surveys[i].question %></b>
+        </p>
+        <p>
+          <%= surveys[i].answer1 %>: <%= surveys[i].answer1UserIds.length %>
+        </p>
+        <% if(surveys[i].answer2){ %>
+        <p>
+          <%= surveys[i].answer2 %>: <%= surveys[i].answer2UserIds.length %>
+        </p>
+        <% } %>
+        <% if(surveys[i].answer3){ %>
+          <p>
+          <%= surveys[i].answer3 %>: <%= surveys[i].answer3UserIds.length %>
+          </p>
+        <% } %>
+        <% if(surveys[i].answer4){ %>
+          <p>
+          <%= surveys[i].answer4 %>: <%= surveys[i].answer4UserIds.length %>
+          </p>
+        <% } %>
+        <% if(surveys[i].answer5){ %>
+          <p>
+          <%= surveys[i].answer5 %>: <%= surveys[i].answer5UserIds.length %>
+          </p>
+        <% } %>
+        <hr>
+      </li>
+      <% } %>
+    </ul>
+    <% } else{ %>
+    <p>You don't have any surveys posted yet.</p>
+    <% } %>
+    <% } else{ %>
+    <p><a href="/login">Login</a> to see your surveys.</p>
+    <% } %>
+
+
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <% if(authenticated){ %>
+      <p class="text-muted float-left">Logged in as
+        <%= displayName %> | <a href="/logout">Logout</a></p>
+      <p class="text-muted float-right">source on <a href="https://github.com/circuit/circuit-survey-tracker/">github</a></p>
+      <% } else{ %>
+      <p class="text-muted text-center">by Circuit SDK Team | source on <a href="https://github.com/circuit/circuit-survey-tracker/">github</a></p>
+      <% } %>
+    </div>
+  </footer>
+</body>
+
+</html>

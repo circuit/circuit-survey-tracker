@@ -1,0 +1,16 @@
+# Node build artifacts
+node_modules
+npm-debug.log
+
+# Local development
+*.env
+*.dev
+.DS_Store
+.vscode
+
+db/data.json
+downloads/*.json
+downloads/*.xlsx
+config.json
+npm-debug.log
+
