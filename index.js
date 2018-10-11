@@ -15,6 +15,8 @@ require('log-timestamp');
 
 // Overwrite config with env variables (production)
 const config = require('./config.json');
+config.circuit = {};
+config.app = {};
 config.circuit.client_id = process.env.CLIENT_ID || config.circuit.client_id;
 config.circuit.client_secret = process.env.CLIENT_SECRET || config.circuit.client_secret;
 config.circuit.domain = process.env.DOMAIN || config.circuit.domain;
