@@ -15,8 +15,8 @@ require('log-timestamp');
 
 // Overwrite config with env variables (production)
 const config = require('./config.json');
-config.circuit = {};
-config.app = {};
+config.circuit = config.circuit || {};
+config.app = config.app || {};
 config.circuit.client_id = process.env.CLIENT_ID || config.circuit.client_id;
 config.circuit.client_secret = process.env.CLIENT_SECRET || config.circuit.client_secret;
 config.circuit.domain = process.env.DOMAIN || config.circuit.domain;
@@ -98,11 +98,12 @@ app.get('/', async (req, res) => {
 });
 
 async function render(req, res) {
+  const surveys = await store.getSettings(req.session.userId);
   res.render('index', {
     domain: config.circuit.domain,
     authenticated: req.session.isAuthenticated,
     displayName: req.session.displayName,
-    surveys: await store.getSettings(req.session.userId)
+    surveys: surveys || []
   });
 }
 
