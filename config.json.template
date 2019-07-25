@@ -3,7 +3,7 @@
     "domain": "<domain, e.g. circuitsandbox.net>",
     "client_id": "<your client id>",
     "client_secret": "<your client secret>",
-    "scope": "ALL"
+    "scope": "CALL_RECORDING,CALLS,MENTION_EVENT,READ_CONVERSATIONS,READ_USER,READ_USER_PROFILE,WRITE_CONVERSATIONS,WRITE_USER_PROFILE"
   },
   "app": {
     "domain": "<domain hosting app, e.g. http://localhost:3000>"
