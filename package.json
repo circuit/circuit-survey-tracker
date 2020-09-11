@@ -19,7 +19,7 @@
     "json2xls": "^0.1.2",
     "jsonfile": "^5.0.0",
     "log-timestamp": "^0.2.1",
-    "node-fetch": "^2.2.0",
+    "node-fetch": "^2.6.1",
     "randomstring": "^1.1.5",
     "simple-oauth2": "^2.2.1"
   }
